@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E39D8EFF2C95001300C9D903 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D8EFD2C95001300C9D903 /* Flutter.xcframework */; };
+		E39D8F002C95001300C9D903 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39D8EFE2C95001300C9D903 /* App.xcframework */; };
 		E3C94C2D2C94C4A900599C65 /* flutter_poc_9000App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C94C2C2C94C4A900599C65 /* flutter_poc_9000App.swift */; };
 		E3C94C2F2C94C4A900599C65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C94C2E2C94C4A900599C65 /* ContentView.swift */; };
 		E3C94C312C94C4AB00599C65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C94C302C94C4AB00599C65 /* Assets.xcassets */; };
@@ -14,6 +16,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E39D8EF72C94F3FC00C9D903 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = ../Flutter/Release/Flutter.xcframework; sourceTree = "<group>"; };
+		E39D8EF82C94F3FC00C9D903 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../Flutter/Release/App.xcframework; sourceTree = "<group>"; };
+		E39D8EFB2C94FAAA00C9D903 /* Info-Debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
+		E39D8EFC2C94FB1300C9D903 /* Info-Release.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Release.plist"; sourceTree = "<group>"; };
+		E39D8EFD2C95001300C9D903 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = ../Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
+		E39D8EFE2C95001300C9D903 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../Flutter/Debug/App.xcframework; sourceTree = "<group>"; };
 		E3C94C292C94C4A900599C65 /* flutter-poc-9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flutter-poc-9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C94C2C2C94C4A900599C65 /* flutter_poc_9000App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flutter_poc_9000App.swift; sourceTree = "<group>"; };
 		E3C94C2E2C94C4A900599C65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,17 +35,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39D8EFF2C95001300C9D903 /* Flutter.xcframework in Frameworks */,
+				E39D8F002C95001300C9D903 /* App.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E39D8EF62C94F3FC00C9D903 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E39D8EFE2C95001300C9D903 /* App.xcframework */,
+				E39D8EFD2C95001300C9D903 /* Flutter.xcframework */,
+				E39D8EF82C94F3FC00C9D903 /* App.xcframework */,
+				E39D8EF72C94F3FC00C9D903 /* Flutter.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3C94C202C94C4A900599C65 = {
 			isa = PBXGroup;
 			children = (
 				E3C94C2B2C94C4A900599C65 /* flutter-poc-9000 */,
 				E3C94C2A2C94C4A900599C65 /* Products */,
+				E39D8EF62C94F3FC00C9D903 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +74,8 @@
 		E3C94C2B2C94C4A900599C65 /* flutter-poc-9000 */ = {
 			isa = PBXGroup;
 			children = (
+				E39D8EFB2C94FAAA00C9D903 /* Info-Debug.plist */,
+				E39D8EFC2C94FB1300C9D903 /* Info-Release.plist */,
 				E3C94C2C2C94C4A900599C65 /* flutter_poc_9000App.swift */,
 				E3C94C2E2C94C4A900599C65 /* ContentView.swift */,
 				E3C94C302C94C4AB00599C65 /* Assets.xcassets */,
@@ -273,7 +297,12 @@
 				DEVELOPMENT_TEAM = 6FYGHL7NG8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Flutter/$(CONFIGURATION)/",
+					"$(inherited)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "flutter-poc-9000/Info-$(CONFIGURATION).plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -284,7 +313,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -292,7 +321,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mdco.flutter-poc-9000";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -311,7 +341,12 @@
 				DEVELOPMENT_TEAM = 6FYGHL7NG8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Flutter/$(CONFIGURATION)/",
+					"$(inherited)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "flutter-poc-9000/Info-$(CONFIGURATION).plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -322,7 +357,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
@@ -330,7 +365,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mdco.flutter-poc-9000";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
