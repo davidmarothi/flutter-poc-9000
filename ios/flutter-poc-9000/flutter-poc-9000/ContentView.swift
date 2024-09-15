@@ -22,18 +22,48 @@ struct FlutterViewControllerRepresentable: UIViewControllerRepresentable {
 }
 
 struct ContentView: View {
+    @State private var showSheet = false
+
     var body: some View {
-        NavigationStack {
+        VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
-            NavigationLink("Next") {
-                FlutterViewControllerRepresentable()
+            Button(action: {
+                showSheet.toggle()
+            }) {
+                Text("Next")
             }
             .buttonStyle(.borderedProminent)
         }
-        .padding()
+        .sheet(isPresented: $showSheet) {
+            SheetView()
+        }
+    }
+}
+
+struct SheetView: View {
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(Color.gray.opacity(0.3))
+                        .clipShape(Circle())
+                }
+                .padding()
+            }
+
+            FlutterViewControllerRepresentable()
+        }
     }
 }
 
