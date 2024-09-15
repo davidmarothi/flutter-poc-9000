@@ -9,42 +9,58 @@ import SwiftUI
 import Flutter
 
 struct FlutterViewControllerRepresentable: UIViewControllerRepresentable {
-  @Environment(FlutterDependencies.self) var flutterDependencies
+    let flutterEngine = FlutterEngine(name: "my flutter engine")
+    var name: String
 
-  func makeUIViewController(context: Context) -> some UIViewController {
-    return FlutterViewController(
-      engine: flutterDependencies.flutterEngine,
-      nibName: nil,
-      bundle: nil)
-  }
+   init(name: String) {
+        self.name = name
+    }
 
-  func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let arguments = [self.name]
+        flutterEngine.run(
+            withEntrypoint: nil,
+            libraryURI: nil,
+            initialRoute: nil,
+            entrypointArgs: arguments
+        )
+
+        return FlutterViewController(
+            engine: flutterEngine,
+            nibName: nil,
+            bundle: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }
 
 struct ContentView: View {
     @State private var showSheet = false
+    @State private var name: String = ""
 
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Native App")
+            TextField("Name", text: $name)
+                .textFieldStyle(.roundedBorder)
+                .padding()
             Button(action: {
                 showSheet.toggle()
             }) {
                 Text("Next")
             }
             .buttonStyle(.borderedProminent)
+            .disabled(name.isEmpty)
         }
         .sheet(isPresented: $showSheet) {
-            SheetView()
+            SheetView(name: name)
         }
     }
 }
 
 struct SheetView: View {
     @Environment(\.dismiss) var dismiss
+    let name: String
 
     var body: some View {
         VStack {
@@ -62,7 +78,7 @@ struct SheetView: View {
                 .padding()
             }
 
-            FlutterViewControllerRepresentable()
+            FlutterViewControllerRepresentable(name: name)
         }
     }
 }
