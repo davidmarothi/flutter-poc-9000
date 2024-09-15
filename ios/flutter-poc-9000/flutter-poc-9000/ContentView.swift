@@ -34,9 +34,14 @@ struct FlutterViewControllerRepresentable: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }
 
+struct ApiModel: Codable {
+    let yourLuckyNumber: Int
+}
+
 struct ContentView: View {
     @State private var showSheet = false
     @State private var name: String = ""
+    @State private var luckyNumber: ApiModel?
 
     var body: some View {
         VStack {
@@ -44,6 +49,15 @@ struct ContentView: View {
             TextField("Name", text: $name)
                 .textFieldStyle(.roundedBorder)
                 .padding()
+
+            Text("Your lucky number is")
+
+            if let luckyNumber = luckyNumber {
+               Text("\(luckyNumber.yourLuckyNumber)")
+            } else {
+                ProgressView()
+            }
+
             Button(action: {
                 showSheet.toggle()
             }) {
@@ -55,6 +69,32 @@ struct ContentView: View {
         .sheet(isPresented: $showSheet) {
             SheetView(name: name)
         }
+        .onAppear() {
+            fetchLuckyNumber()
+        }
+    }
+
+    func fetchLuckyNumber() {
+        guard let url = URL(string: "http://127.0.0.1:8080/v1/user/your-lucky-number") else {
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            let decoder = JSONDecoder()
+            do {
+                let fetchedLuckyNumber = try decoder.decode(ApiModel.self, from: data)
+                DispatchQueue.main.async {
+                    self.luckyNumber = fetchedLuckyNumber
+                }
+            } catch {
+                print("Error decoding data: \(error.localizedDescription)")
+            }
+        }.resume()
     }
 }
 
